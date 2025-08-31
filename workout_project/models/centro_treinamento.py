@@ -1,17 +1,14 @@
-from atleta import Atleta
-from models import BaseModel
-from sqlalchemy import String, integer, relantionship
-from sqlalchemy.orm import Mapped, mapped_column
+from __future__ import annotations
+from datetime import datetime
+from sqlmodel import Field, Relationship, SQLModel
 
-
-class CentroTreinamento(BaseModel):
+class CentroTreinamento(SQLModel, table=True):
     __tablename__ = "centro_treinamento"
-    pk_id: Mapped[int] = mapped_column(
-        integer, primary_key=True, autoincrement=True
-    )
-    nome: Mapped[str] = mapped_column(String(20), nullable=False)
-    endereco: Mapped[str] = mapped_column(String(60), nullable=False)
-    proprietario: Mapped[str] = mapped_column(String(30), nullable=False)
-    atleta: Mapped["Atleta"] = relantionship(
-        back_populates="centro_treinamento"
-    )
+
+    pk_id: int | None = Field(default=None, primary_key=True)
+    nome: str = Field(max_length=20, unique=True, nullable=False)
+    endereco: str = Field(max_length=60, nullable=False)
+    proprietario: str = Field(max_length=30, nullable=False)
+    created_at: datetime = Field(nullable=False, default_factory=datetime.utcnow)
+
+    atletas: list["Atleta"] = Relationship(back_populates="centro_treinamento")

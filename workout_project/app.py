@@ -1,8 +1,18 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from workout_project.db.engine import criar_banco
 
-app = FastAPI("Workout Tracker API")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+
+    await criar_banco()  
+    print("Banco de dados criado com sucesso.")
+    yield 
 
 
+
+app = FastAPI(title="Workout Tracker API", lifespan=lifespan)
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to the Workout Tracker API!"}
+async def root():
+    return {"msg": "Workout Tracker API rodando!"}

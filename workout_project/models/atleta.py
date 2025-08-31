@@ -1,31 +1,22 @@
+from __future__ import annotations
 from datetime import datetime
+from sqlmodel import Field, Relationship, SQLModel
+from sqlalchemy.sql.sqltypes import Float
 
-from categoria import Categoria
-from centro_treinamento import CentroTreinamento
-from models import BaseModel
-from sqlalchemy import DateTime, ForeignKey, String, integer, relantionship
-from sqlalchemy.orm import Mapped, mapped_column
-
-
-class Atleta(BaseModel):
+class Atleta(SQLModel, table=True):
     __tablename__ = "atletas"
-    pk_id: Mapped[int] = mapped_column(
-        integer, primary_key=True, autoincrement=True
-    )
-    nome: Mapped[str] = mapped_column(String(50), nullable=False)
-    cpf: Mapped[str] = mapped_column(String(11), unique=True, nullable=False)
-    idade: Mapped[int] = mapped_column(integer, nullable=False)
-    peso: Mapped[float] = mapped_column(float, nullable=False)
-    altura: Mapped[float] = mapped_column(float, nullable=False)
-    sexo: Mapped[str] = mapped_column(String(1), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    Categoria: Mapped["Categoria"] = relantionship(back_populates="Atletas")
-    categoria_id: Mapped[int] = mapped_column(
-        integer, ForeignKey("categorias.pk_id"), nullable=False
-    )
-    centro_treinamento: Mapped["CentroTreinamento"] = relantionship(
-        back_populates="atleta"
-    )
-    centro_treinamento_id: Mapped[int] = mapped_column(
-        integer, ForeignKey("centro_treinamento.pk_id"), nullable=False
-    )
+
+    pk_id: int | None = Field(default=None, primary_key=True)
+    nome: str = Field(max_length=50, nullable=False)
+    cpf: str = Field(max_length=11, unique=True, nullable=False)
+    idade: int = Field(nullable=False)
+    peso: float = Field(nullable=False)
+    altura: float = Field(nullable=False)
+    sexo: str = Field(max_length=1, nullable=False)
+    created_at: datetime = Field(nullable=False, default_factory=datetime.utcnow)
+
+    categoria_id: int | None = Field(default=None, foreign_key="categorias.pk_id")
+    categoria: "Categoria" | None = Relationship(back_populates="atletas")
+
+    centro_treinamento_id: int | None = Field(default=None, foreign_key="centro_treinamento.pk_id")
+    centro_treinamento: "CentroTreinamento" | None = Relationship(back_populates="atletas")
