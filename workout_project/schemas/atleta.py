@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from pydantic import BaseModel, Field, PositiveFloat
+from pydantic import Field, PositiveFloat
+from schemas.schemas import BaseSchema
 
 
-class Atleta(BaseModel):
+class Atleta(BaseSchema):
     nome: Annotated[
         str,
         Field(
