@@ -4,13 +4,13 @@ from pydantic import Field
 from schemas.schemas import BaseSchema
 
 
-class CentroTreinamento(BaseSchema):
+class CentroTreinamentoBase(BaseSchema):
     nome: Annotated[
         str,
         Field(
             description="Nome do centro de treinamento",
             example="Fit Center",
-            max_lenghth=20,
+            max_length=20,
         ),
     ]
     endereco: Annotated[
@@ -21,11 +21,21 @@ class CentroTreinamento(BaseSchema):
             max_length=60,
         ),
     ]
-    proprietatio: Annotated[
+    proprietario: Annotated[
         str,
         Field(
-            description="Proprietario do centro de treinamento",
-            example="Joao Silva",
+            description="Proprietário do centro de treinamento",
+            example="João Silva",
             max_length=30,
         ),
+    ]
+
+
+class CentroTreinamentoCreate(CentroTreinamentoBase):
+    pass
+
+
+class CentroTreinamentoOut(CentroTreinamentoBase):
+    id: Annotated[int, Field(
+        description="Identificador do centro de treinamento")
     ]
