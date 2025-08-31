@@ -3,8 +3,7 @@ from typing import Annotated
 
 from pydantic import Field, PositiveFloat
 
-# Importe a classe BaseSchema do seu projeto
-from schemas import BaseSchema
+from workout_project.schemas.schemas import BaseSchema
 
 
 class AtletaBase(BaseSchema):
