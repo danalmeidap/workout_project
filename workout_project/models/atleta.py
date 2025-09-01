@@ -26,6 +26,6 @@ class Atleta(SQLModel, table=True):
         default=None, foreign_key="centro_treinamento.pk_id"
     )  # noqa: E501
     categoria: "Categoria" | None = Relationship(back_populates="atletas")  # type: ignore # noqa: F821
-    centro_treinamento: "CentroTreinamento" | None = Relationship(  # noqa: F821
+    centro_treinamento: "CentroTreinamento" | None = Relationship(  # noqa: F821 # type: ignore
         back_populates="atletas"
     )  # type: ignore  # noqa: E501, F821
