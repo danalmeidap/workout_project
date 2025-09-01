@@ -1,3 +1,5 @@
+# workout_project/models/atleta.py
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -8,24 +10,18 @@ from sqlmodel import Field, Relationship, SQLModel
 class Atleta(SQLModel, table=True):
     __tablename__ = "atletas"
 
-    pk_id: int | None = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     nome: str = Field(max_length=50, nullable=False)
     cpf: str = Field(max_length=11, unique=True, nullable=False)
     idade: int = Field(nullable=False)
     peso: float = Field(nullable=False)
     altura: float = Field(nullable=False)
     sexo: str = Field(max_length=1, nullable=False)
-    created_at: datetime = Field(
-        nullable=False, default_factory=datetime.utcnow
-    )
+    created_at: datetime = Field(nullable=False,
+                                  default_factory=datetime.utcnow)
 
-    categoria_id: int | None = Field(
-        default=None, foreign_key="categorias.pk_id"
-    )
-    centro_treinamento_id: int | None = Field(
-        default=None, foreign_key="centro_treinamento.pk_id"
-    )  # noqa: E501
-    categoria: "Categoria" | None = Relationship(back_populates="atletas")  # type: ignore # noqa: F821
-    centro_treinamento: "CentroTreinamento" | None = Relationship(  # noqa: F821 # type: ignore
-        back_populates="atletas"
-    )  # type: ignore  # noqa: E501, F821
+    categoria_id: int | None = Field(default=None, foreign_key="categorias.id")
+    centro_treinamento_id: int | None = Field(default=None, foreign_key="centros_treinamento.id")  # noqa: E501
+
+    categoria: "Categoria" | None = Relationship(back_populates="atletas")
+    centro_treinamento: "CentroTreinamento" | None = Relationship(back_populates="atletas")  # noqa: E501

@@ -1,11 +1,12 @@
 from typing import List, Optional
 
-from models.centro_treinamento import CentroTreinamento
-from schemas.centro_treinamento import (
+from sqlmodel import Session, select
+
+from workout_project.models.centro_treinamento import CentroTreinamento
+from workout_project.schemas.centro_treinamento import (
     CentroTreinamentoCreate,
     CentroTreinamentoUpdate,
 )
-from sqlmodel import Session, select
 
 
 def criar_centro_treinamento(

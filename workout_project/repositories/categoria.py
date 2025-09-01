@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from models.categoria import Categoria
-from schemas.categoria import CategoriaCreate, CategoriaUpdate
 from sqlmodel import Session, select
+
+from workout_project.models.categoria import Categoria
+from workout_project.schemas.categoria import CategoriaCreate, CategoriaUpdate
 
 
 def criar_categoria(db: Session, categoria_in: CategoriaCreate) -> Categoria:

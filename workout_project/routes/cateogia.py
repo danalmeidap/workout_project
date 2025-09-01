@@ -11,7 +11,8 @@ from workout_project.repositories.categoria import (
     listar_categorias,
     obter_categoria_por_id,
 )
-from workout_project.schemas.categoria import CategoriaIn, CategoriaOut
+from workout_project.schemas.categoria import CategoriaCreate as CategoriaIn
+from workout_project.schemas.categoria import CategoriaOut
 
 router = APIRouter(prefix="/categorias", tags=["Categorias"])
 
