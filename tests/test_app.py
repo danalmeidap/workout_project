@@ -10,6 +10,4 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == HTTPStatus.OK
-    assert response.json() == {
-        "message": "Welcome to the Workout Tracker API!"
-    }
+    assert response.json() == {"msg": "Workout Tracker API rodando!"}
