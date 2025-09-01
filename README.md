@@ -24,30 +24,24 @@ Uma API RESTful para gerenciar atletas, categorias e centros de treinamento, con
 
 .
 ├── workout_project/
-│   ├── __pycache__/
 │   ├── db/
-│   │   ├── __pycache__/
 │   │   ├── dependencies.py
 │   │   ├── engine.py
 │   │   └── models.py
 │   ├── models/
 │   │   ├── __init__.py
-│   │   ├── __pycache__/
 │   │   ├── atleta.py
 │   │   ├── categoria.py
 │   │   └── centro_treinamento.py
 │   ├── repositories/
-│   │   ├── __pycache__/
 │   │   ├── atleta.py
 │   │   ├── categoria.py
 │   │   └── centro_treinamento.py
 │   ├── routes/
-│   │   ├── __pycache__/
 │   │   ├── atleta.py
 │   │   ├── categoria.py
 │   │   └── centro_treinamento.py
 │   └── schemas/
-│       ├── __pycache__/
 │       ├── atleta.py
 │       ├── categoria.py
 │       └── centro_treinamento.py
