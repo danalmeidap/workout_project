@@ -2,7 +2,8 @@
 from typing import Annotated
 
 from pydantic import Field
-from schemas.schemas import BaseSchema
+
+from workout_project.schemas.schemas import BaseSchema
 
 
 class CategoriaBase(BaseSchema):

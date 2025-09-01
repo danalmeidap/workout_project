@@ -12,7 +12,9 @@ from workout_project.repositories.centro_treinamento import (
     obter_centro_treinamento_por_id,
 )
 from workout_project.schemas.centro_treinamento import (
-    CentroTreinamentoIn,
+    CentroTreinamentoCreate as CentroTreinamentoIn,
+)
+from workout_project.schemas.centro_treinamento import (
     CentroTreinamentoOut,
 )
 

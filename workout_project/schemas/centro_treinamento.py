@@ -1,7 +1,8 @@
 from typing import Annotated, Optional
 
 from pydantic import Field
-from schemas.schemas import BaseSchema
+
+from workout_project.schemas.schemas import BaseSchema
 
 
 class CentroTreinamentoBase(BaseSchema):

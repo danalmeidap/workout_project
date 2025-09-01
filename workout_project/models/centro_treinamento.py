@@ -15,4 +15,4 @@ class CentroTreinamento(SQLModel, table=True):
     created_at: datetime = Field(
         nullable=False, default_factory=datetime.utcnow
     )
-    atletas: List["Atleta"] = Relationship(back_populates="centro_treinamento")  # type: ignore # noqa: F821
+    atletas: list["Atleta"] = Relationship(back_populates="centro_treinamento")  # type: ignore # noqa: F821
