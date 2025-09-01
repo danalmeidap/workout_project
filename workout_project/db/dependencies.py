@@ -1,8 +1,11 @@
-from sqlmodel import Session
+from sqlmodel.ext.asyncio.session import AsyncSession
 
-from workout_project.db import engine
+from workout_project.db.engine import engine
 
 
-def get_session():
-    with Session(engine) as session:
+async def get_session() -> AsyncSession:  # type: ignore
+    """
+    Dependência que fornece uma sessão assíncrona para as rotas.
+    """
+    async with AsyncSession(engine) as session:
         yield session

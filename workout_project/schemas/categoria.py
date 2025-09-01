@@ -9,9 +9,7 @@ class CategoriaBase(BaseSchema):
     nome: Annotated[
         str,
         Field(
-            description="Nome da categoria",
-            example="Iniciante",
-            max_length=10
+            description="Nome da categoria", example="Iniciante", max_length=10
         ),
     ]
 
@@ -26,7 +24,7 @@ class CategoriaUpdate(BaseSchema):
         Field(
             description="Nome da categoria",
             example="Intermediário",
-            max_length=10
+            max_length=10,
         ),
     ]
 

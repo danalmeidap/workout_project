@@ -12,6 +12,7 @@ class CentroTreinamento(SQLModel, table=True):
     nome: str = Field(max_length=20, unique=True, nullable=False)
     endereco: str = Field(max_length=60, nullable=False)
     proprietario: str = Field(max_length=30, nullable=False)
-    created_at: datetime = Field(nullable=False,
-                         default_factory=datetime.utcnow)
-    atleta: List["Atleta"] = Relationship(back_populates="centro_treinamento")  # type: ignore # noqa: F821
+    created_at: datetime = Field(
+        nullable=False, default_factory=datetime.utcnow
+    )
+    atletas: List["Atleta"] = Relationship(back_populates="centro_treinamento")  # type: ignore # noqa: F821

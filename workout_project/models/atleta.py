@@ -19,9 +19,13 @@ class Atleta(SQLModel, table=True):
         nullable=False, default_factory=datetime.utcnow
     )
 
-    categoria_id: int | None = Field(default=None,
-                                      foreign_key="categorias.pk_id")
-    categoria: "Categoria" | None = Relationship(back_populates="atleta")  # type: ignore # noqa: F821
-
-    centro_treinamento_id: int | None = Field(default=None, foreign_key="centro_treinamento.pk_id")  # noqa: E501
-    centro_treinamento: "CentroTreinamento" | None = Relationship(back_populates="atleta")  # type: ignore # noqa: E501, F821
+    categoria_id: int | None = Field(
+        default=None, foreign_key="categorias.pk_id"
+    )
+    centro_treinamento_id: int | None = Field(
+        default=None, foreign_key="centro_treinamento.pk_id"
+    )  # noqa: E501
+    categoria: "Categoria" | None = Relationship(back_populates="atletas")  # type: ignore # noqa: F821
+    centro_treinamento: "CentroTreinamento" | None = Relationship(  # noqa: F821
+        back_populates="atletas"
+    )  # type: ignore  # noqa: E501, F821

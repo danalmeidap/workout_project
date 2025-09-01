@@ -1,9 +1,10 @@
 from typing import List, Optional
 
 from sqlmodel import Session, select
+from sqlmodel.ext.asyncio.session import AsyncSession
 
 from workout_project.models.atleta import Atleta
-from workout_project.schemas.atleta import AtletaIn, AtletaUpdate
+from workout_project.schemas.atleta import AtletaIn, AtletaOut, AtletaUpdate
 
 
 def criar_atleta(db: Session, atleta_in: AtletaIn) -> Atleta:
@@ -18,8 +19,10 @@ def obter_atleta_por_id(db: Session, atleta_id: int) -> Optional[Atleta]:
     return db.get(Atleta, atleta_id)
 
 
-def listar_atletas(db: Session) -> List[Atleta]:
-    return db.exec(select(Atleta)).all()
+async def listar_atletas(db: AsyncSession) -> List[AtletaOut]:  # noqa: F821
+    result = await db.exec(select(Atleta))
+    atletas = result.all()
+    return atletas
 
 
 def deletar_atleta(db: Session, atleta_id: int) -> bool:
